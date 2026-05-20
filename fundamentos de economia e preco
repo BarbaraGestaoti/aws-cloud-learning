@@ -1,0 +1,49 @@
+# ☁️ Fundamentos de Economia e Precificação na AWS
+
+Anotações de estudo sobre os pilares de custo, modelos de contratação e a filosofia de preço da Amazon Web Services (AWS).
+
+---
+
+## 📌 Os 3 Fatores Fundamentais de Custo
+
+Independentemente do serviço utilizado, o faturamento da AWS é estruturado principalmente sobre três pilares:
+
+| Pilar | Unidade de Cobrança | Dinâmica de Custo |
+| :--- | :--- | :--- |
+| **Computação** | Hora ou Segundo | Varia conforme o tipo de instância, capacidade de hardware e Sistema Operacional (ex: Linux possui cobrança por segundo). |
+| **Armazenamento** | Por Gigabyte (GB) | Cobrado pelo volume total de dados retido nos serviços de storage. |
+| **Transferência de Dados** | Por Gigabyte (GB) | **Entrada (Inbound):** Gratuita (na ampla maioria dos cenários).<br>**Saída (Outbound):** Agregada entre serviços e cobrada mensalmente (*Data Transfer Out*). |
+
+---
+
+## ⚙️ Modelos de Consumo e Definição de Preço
+
+A filosofia da AWS se baseia em **"pagar pelo que usar"**, sem a obrigatoriedade de contratos de longo prazo, oferecendo flexibilidade através de 4 abordagens:
+
+### 1. Pagamento Conforme o Uso (*Pay-as-you-go*)
+* Modelo sob demanda (On-Demand).
+* Permite iniciar, pausar ou encerrar recursos a qualquer momento, ideal para responder a variações de tráfego e testes de hipóteses.
+
+### 2. Pague Menos ao Fazer Reserva (Instâncias Reservadas)
+Para serviços previsíveis e estáveis (como servidores **Amazon EC2** e bancos de dados **Amazon RDS**), é possível assumir um compromisso de longo prazo (1 a 3 anos) para obter **até 75% de desconto** em comparação ao preço sob demanda. Opções de pagamento:
+* **AURI (*All Upfront Reserved Instance*):** Pagamento total antecipado. Oferece o **maior desconto possível**.
+* **PURI (*Partial Upfront Reserved Instance*):** Pagamento antecipado parcial. Equilibra o custo inicial com um bom desconto.
+* **NURI (*No Upfront Reserved Instance*):** Sem pagamento antecipado. Libera capital inicial para outros projetos, aplicando um desconto menor nas parcelas mensais.
+
+### 3. Pague Menos Quando Usar Mais (Preço Estratificado)
+* Modelo baseado em descontos por volume (Economia de Escala para o cliente).
+* Serviços como o **Amazon S3** (armazenamento) utilizam faixas de preço (*tiers*): quanto maior o volume de gigabytes armazenados, menor é o custo unitário por GB.
+
+### 4. Economia de Escala Global da AWS
+* Foco contínuo na eficiência operacional: redução do consumo de energia, otimização de hardware e infraestrutura de Data Centers.
+* **Repasse de economias:** A AWS repassa rotineiramente essa redução de custo operacional aos clientes (reduziu seus preços mais de 75 vezes historicamente).
+* Novas tecnologias e hardwares de maior performance substituem os legados sem custos adicionais de migração na tarifa.
+
+---
+
+## 💡 Práticas de Otimização de Arquitetura (FinOps)
+* **Público vs. Privado:** Priorizar a movimentação de dados dentro da mesma Região da AWS para evitar tarifas de transferência de saída.
+* **Ciclo de Vida de Dados:** Combinar diferentes classes de armazenamento (ex: S3 Standard vs. S3 Glacier) com base na frequência de acesso para reduzir drasticamente os custos de storage mantendo a confiabilidade e segurança.
+
+---
+_Anotações baseadas no Módulo 2 do AWS Training and Certification: Economia e faturamento da nuvem._
